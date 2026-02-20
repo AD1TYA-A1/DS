@@ -1,1 +1,1 @@
-    int height[] = {2, 3, 10, 5, 7, 8, 9}; // Output = 36
+    printf("%d",xUnSigned);
