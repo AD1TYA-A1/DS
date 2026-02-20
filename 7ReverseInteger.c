@@ -23,9 +23,9 @@ int reverse(int x)
     int revNumber = 0;
     while (x1 != 0)
     {
-        printf("revNumber at line 27 %d \n",revNumber);
+        // printf("revNumber at line 27 %d \n", revNumber);
         n = x1 % 10;
-        printf("N is %d \n", n);
+        // printf("N is %d \n", n);
         if (n == xUnSigned)
         {
             return x;
@@ -37,13 +37,13 @@ int reverse(int x)
             revNumber = revNumber + n;
             // printf(" revNumber : %d \n");
         }
-        else
-        {
-            printf("It is Zero \n");
-        }
+        // else
+        // {
+        //     printf("It is Zero \n");
+        // }
         x1 = x1 / 10;
     }
-    printf("%d \n", revNumber);
+    // printf("%d \n", revNumber);
 
     if (x < 0)
     {
@@ -53,16 +53,15 @@ int reverse(int x)
             revNumber--;
             signRevNumber--;
         }
-        // printf("%d \n", signRevNumber);
         return signRevNumber;
     }
-
-    printf("%d \n", revNumber);
+    return revNumber;
 }
 
 int main(int argc, char const *argv[])
 {
-    reverse(9087);
+    int rev = reverse(100);
+    printf("%d",rev);
 
     return 0;
 }
