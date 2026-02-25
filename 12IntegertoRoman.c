@@ -1,97 +1,67 @@
 #include <stdio.h>
 char *intToRoman(int num)
 {
-    static char str[99];
-    if (num == 1994)
-    {
-        return "MCMXCIV";
-    }
-
+    static char str[] = "";
     int indexOfStr = -1;
-
-    int a = num;
-    int index = -1;
-    while (a != 0)
+    char one[] = {'I', 'X', 'C', 'M'};
+    char five[] = {'V', 'L', 'D', '!'};
+    char ten[] = {'X', 'C', 'M', '?'};
+    int n = num;
+    int place = -1;
+    while (n != 0)
     {
-        int x = a % 10;
-        index++;
-        if (index == 0)
+        int a = n % 10;
+        place++;
+
+        char one_symb = one[place];
+        char five_symb = five[place];
+        char ten_symb = ten[place];
+
+        if (a >= 1 && a <= 3)
         {
-            // printf("Index is Zero");
-            if (a < 4)
-            {
-                // printf("Inside a<4");
-                int k = a;
-                while (k != 0)
-                {
-                    indexOfStr++;
-                    str[indexOfStr] = '1';
-                    k--;
-                }
-                // printf("Out of While Loop");
-            }
-            else if (a == 4)
-            {
-                for (int i = 0; i < 2; i++)
-                {
-                    indexOfStr++;
-                    if (i == 0)
-                    {
-                        str[indexOfStr] = '1';
-                    }
-                    else
-                    {
-                        str[indexOfStr] = 'V';
-                    }
-                }
-            }
-            else if (a == 5)
+            for (int i = 0; i < a; i++)
             {
                 indexOfStr++;
-                str[indexOfStr] = 'V';
-            }
-            else if (a > 5 && a < 9)
-            {
-                // printf("A is %d",a);
-                // printf("a > 5 && a < 9");
-                indexOfStr++;
-                str[indexOfStr] = 'V';
-                for (int i = 5; i < a; i++)
-                {
-                    indexOfStr++;
-                    str[indexOfStr] = '1';
-                }
-                // printf("OoutSide");
-            }
-            if (a == 9)
-            {
-                for (int i = 0; i < 2; i++)
-                {
-                    indexOfStr++;
-                    if (i == 0)
-                    {
-                        str[indexOfStr] = '1';
-                    }
-                    else
-                    {
-                        str[indexOfStr] = 'X';
-                    }
-                }
+                str[indexOfStr] = one_symb;
             }
         }
-        if (index == 1)
+        else if (a == 4)
         {
-            
+            indexOfStr++;
+            str[indexOfStr] = one_symb;
+            indexOfStr++;
+            str[indexOfStr] = five_symb;
+        }
+        else if (a == 5)
+        {
+            indexOfStr++;
+            str[indexOfStr] = five_symb;
+        }
+        else if (a >= 6 && a <= 8)
+        {
+            indexOfStr++;
+            str[indexOfStr] = five_symb;
+            for (int i = 5; i <= a; i++)
+            {
+                indexOfStr++;
+                str[indexOfStr] = one_symb;
+            }
+        }
+        else if (a == 9)
+        {
+            indexOfStr++;
+            str[indexOfStr] = ten_symb;
+            indexOfStr++;
+            str[indexOfStr] = one_symb;
         }
 
-        a = a / 10;
+        n = n / 10;
     }
-    str[++indexOfStr] = '\0'; // null-terminate
     return str;
 }
 int main(int argc, char const *argv[])
 {
-    printf("%s", intToRoman(1994));
+    printf("%s", intToRoman(94));
     // Output: 'MMMDCCXLIX'
     return 0;
 }
