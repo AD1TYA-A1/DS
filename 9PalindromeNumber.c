@@ -26,7 +26,9 @@ bool isPalindrome(int x)
     }
     if (reverse == x)
     {
-        return true;
+        return true; 
+
+        
     }
     return false;
     
